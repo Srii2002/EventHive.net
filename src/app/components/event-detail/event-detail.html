@@ -1,0 +1,11 @@
+<div class="event-detail-container">
+  <div *ngIf="loading" class="loading">Loading event...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+ 
+  <div *ngIf="event && !loading && !error" class="event-card">
+    <h2>{{ event.description }}</h2>  <!-- Changed from event.name -->
+    <p><strong>Date:</strong> {{ event.date | date }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Tickets Available:</strong> {{ event.ticketsAvailable }}</p>
+  </div>
+</div>

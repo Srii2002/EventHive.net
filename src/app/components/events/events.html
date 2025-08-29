@@ -1,0 +1,29 @@
+<div class="events-container">
+ 
+  <!-- Admin can create events -->
+  <div *ngIf="role === 'admin'">
+    <h2>Admin can create events:</h2>
+    <input type="text" [(ngModel)]="newEvent.description" placeholder="Event Description" />
+    <input type="date" [(ngModel)]="newEvent.date" />
+    <input type="text" [(ngModel)]="newEvent.location" placeholder="Event Location" />
+    <input type="number" [(ngModel)]="newEvent.ticketsAvailable" placeholder="Tickets Available" />
+    <button (click)="createEvent()">Create Event</button>
+  </div>
+ 
+  <!-- List of events -->
+  <h2>List of events</h2>
+  <div class="event-list">
+    <div class="event-card" *ngFor="let event of events">
+      <p><b>{{ event.description }}</b></p>
+      <p><b>Date:</b> {{ event.date | date }}</p>
+      <p><b>Location:</b> {{ event.location }}</p>
+      <p><b>Tickets:</b> {{ event.ticketsAvailable }}</p>
+ 
+      <!-- Users can book -->
+      <div *ngIf="role === 'user'">
+        <button (click)="bookEvent(event.id)">Book</button>
+      </div>
+    </div>
+  </div>
+ 
+</div>

@@ -1,0 +1,21 @@
+<div class="tickets-container">
+  <h2>My Tickets</h2>
+
+  <div *ngIf="loading" class="loading">Loading tickets...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <div *ngIf="!loading && tickets.length === 0" class="no-tickets">
+    You have not booked any tickets yet.
+  </div>
+
+  <div class="ticket-list">
+    <div class="ticket-card" *ngFor="let ticket of tickets">
+      <h3>{{ ticket.eventTitle }}</h3>
+      <p><strong>Date:</strong> {{ ticket.eventDate | date }}</p>
+      <p><strong>Seat:</strong> {{ ticket.seatNumber }}</p>
+      <p><strong>Status:</strong> {{ ticket.status }}</p>
+
+      <button class="cancel-btn" (click)="cancelTicket(ticket.id)">Cancel</button>
+    </div>
+  </div>
+</div>

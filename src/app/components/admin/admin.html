@@ -1,0 +1,86 @@
+<div class="admin-container">
+  <h2>Admin Dashboard</h2>
+
+  <div class="tabs">
+    <button [class.active]="activeTab==='events'" (click)="setTab('events')">Events</button>
+    <button [class.active]="activeTab==='tickets'" (click)="setTab('tickets')">Tickets</button>
+    <button [class.active]="activeTab==='users'" (click)="setTab('users')">Users</button>
+  </div>
+
+  <div *ngIf="loading" class="loading">Loading admin data...</div>
+
+  <!-- Events Tab -->
+  <div *ngIf="activeTab==='events'" class="tab-content">
+    <h3>Manage Events</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Available Tickets</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let event of events">
+          <td>{{ event.name || event.description }}</td>
+          <td>{{ event.date | date }}</td>
+          <td>{{ event.location }}</td>
+          <td>{{ event.ticketsAvailable ?? 'N/A' }}</td>
+          <td>
+            <button class="delete-btn" (click)="deleteEvent(event.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tickets Tab -->
+  <div *ngIf="activeTab==='tickets'" class="tab-content">
+    <h3>All Tickets</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Event Title</th>
+          <th>Seat Number</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ticket of tickets">
+          <td>{{ ticket.userId }}</td>
+          <td>{{ ticket.eventTitle }}</td>
+          <td>{{ ticket.seatNumber }}</td>
+          <td>{{ ticket.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Users Tab -->
+  <div *ngIf="activeTab==='users'" class="tab-content">
+    <h3>Manage Users</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.role }}</td>
+          <td>
+            <button class="delete-btn" (click)="deleteUser(user.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="users-container">
+  <h3>Manage Users</h3>
+ 
+  <div *ngIf="loading">Loading users...</div>
+ 
+  <table *ngIf="!loading && users.length > 0">
+    <thead>
+      <tr>
+        <th>Username</th>
+        <th>Email</th>
+        <th>Role</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>{{ user.username }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
